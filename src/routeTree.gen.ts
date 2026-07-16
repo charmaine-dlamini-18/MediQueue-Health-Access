@@ -9,8 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SymptomsRouteImport } from './routes/symptoms'
+import { Route as PharmaciesRouteImport } from './routes/pharmacies'
+import { Route as MentalHealthRouteImport } from './routes/mental-health'
+import { Route as MedicinesRouteImport } from './routes/medicines'
+import { Route as ClinicsRouteImport } from './routes/clinics'
+import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as AppointmentsRouteImport } from './routes/appointments'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SymptomsRoute = SymptomsRouteImport.update({
+  id: '/symptoms',
+  path: '/symptoms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PharmaciesRoute = PharmaciesRouteImport.update({
+  id: '/pharmacies',
+  path: '/pharmacies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentalHealthRoute = MentalHealthRouteImport.update({
+  id: '/mental-health',
+  path: '/mental-health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MedicinesRoute = MedicinesRouteImport.update({
+  id: '/medicines',
+  path: '/medicines',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClinicsRoute = ClinicsRouteImport.update({
+  id: '/clinics',
+  path: '/clinics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssistantRoute = AssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppointmentsRoute = AppointmentsRouteImport.update({
+  id: '/appointments',
+  path: '/appointments',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +61,130 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/appointments': typeof AppointmentsRoute
+  '/assistant': typeof AssistantRoute
+  '/clinics': typeof ClinicsRoute
+  '/medicines': typeof MedicinesRoute
+  '/mental-health': typeof MentalHealthRoute
+  '/pharmacies': typeof PharmaciesRoute
+  '/symptoms': typeof SymptomsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/appointments': typeof AppointmentsRoute
+  '/assistant': typeof AssistantRoute
+  '/clinics': typeof ClinicsRoute
+  '/medicines': typeof MedicinesRoute
+  '/mental-health': typeof MentalHealthRoute
+  '/pharmacies': typeof PharmaciesRoute
+  '/symptoms': typeof SymptomsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/appointments': typeof AppointmentsRoute
+  '/assistant': typeof AssistantRoute
+  '/clinics': typeof ClinicsRoute
+  '/medicines': typeof MedicinesRoute
+  '/mental-health': typeof MentalHealthRoute
+  '/pharmacies': typeof PharmaciesRoute
+  '/symptoms': typeof SymptomsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/appointments'
+    | '/assistant'
+    | '/clinics'
+    | '/medicines'
+    | '/mental-health'
+    | '/pharmacies'
+    | '/symptoms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/appointments'
+    | '/assistant'
+    | '/clinics'
+    | '/medicines'
+    | '/mental-health'
+    | '/pharmacies'
+    | '/symptoms'
+  id:
+    | '__root__'
+    | '/'
+    | '/appointments'
+    | '/assistant'
+    | '/clinics'
+    | '/medicines'
+    | '/mental-health'
+    | '/pharmacies'
+    | '/symptoms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppointmentsRoute: typeof AppointmentsRoute
+  AssistantRoute: typeof AssistantRoute
+  ClinicsRoute: typeof ClinicsRoute
+  MedicinesRoute: typeof MedicinesRoute
+  MentalHealthRoute: typeof MentalHealthRoute
+  PharmaciesRoute: typeof PharmaciesRoute
+  SymptomsRoute: typeof SymptomsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/symptoms': {
+      id: '/symptoms'
+      path: '/symptoms'
+      fullPath: '/symptoms'
+      preLoaderRoute: typeof SymptomsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pharmacies': {
+      id: '/pharmacies'
+      path: '/pharmacies'
+      fullPath: '/pharmacies'
+      preLoaderRoute: typeof PharmaciesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mental-health': {
+      id: '/mental-health'
+      path: '/mental-health'
+      fullPath: '/mental-health'
+      preLoaderRoute: typeof MentalHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medicines': {
+      id: '/medicines'
+      path: '/medicines'
+      fullPath: '/medicines'
+      preLoaderRoute: typeof MedicinesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/clinics': {
+      id: '/clinics'
+      path: '/clinics'
+      fullPath: '/clinics'
+      preLoaderRoute: typeof ClinicsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assistant': {
+      id: '/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/appointments': {
+      id: '/appointments'
+      path: '/appointments'
+      fullPath: '/appointments'
+      preLoaderRoute: typeof AppointmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +197,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppointmentsRoute: AppointmentsRoute,
+  AssistantRoute: AssistantRoute,
+  ClinicsRoute: ClinicsRoute,
+  MedicinesRoute: MedicinesRoute,
+  MentalHealthRoute: MentalHealthRoute,
+  PharmaciesRoute: PharmaciesRoute,
+  SymptomsRoute: SymptomsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
