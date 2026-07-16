@@ -7,7 +7,8 @@ import {
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { healthTips, facilities } from "@/lib/mock-data";
-import logo from "@/assets/mediqueue-logo.png";
+import logoAsset from "@/assets/mediqueue-logo.png.asset.json";
+const logo = logoAsset.url;
 
 export const Route = createFileRoute("/")({ component: Dashboard });
 
