@@ -81,9 +81,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "MediQueue is an AI-powered healthcare app that helps South Africans find clinics, check medicine stock, book appointments, and access mental health support." },
       { name: "author", content: "MediQueue" },
       { property: "og:title", content: "MediQueue — AI Healthcare for South Africa" },
-      { property: "og:description", content: "Find clinics, check medicine availability, book appointments and access AI-guided care." },
+      { property: "og:description", content: "MediQueue is an AI-powered healthcare app that helps South Africans find clinics, check medicine stock, book appointments, and access mental health support." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "MediQueue — AI Healthcare for South Africa" },
+      { name: "twitter:description", content: "MediQueue is an AI-powered healthcare app that helps South Africans find clinics, check medicine stock, book appointments, and access mental health support." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e0b2b57d-e379-41e9-902b-65cd39905000/id-preview-d37c5db8--ef9223e7-c14a-4fad-88be-35bff3d9dad8.lovable.app-1784186841938.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e0b2b57d-e379-41e9-902b-65cd39905000/id-preview-d37c5db8--ef9223e7-c14a-4fad-88be-35bff3d9dad8.lovable.app-1784186841938.png" },
     ],
     links: [
       {
