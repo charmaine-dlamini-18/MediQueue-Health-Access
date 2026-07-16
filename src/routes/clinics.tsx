@@ -1,12 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MapPin, Clock, Phone, Navigation, Users } from "lucide-react";
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { PageContainer, PageHeader } from "@/components/page-header";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { facilities } from "@/lib/mock-data";
+import { ClientOnly } from "@tanstack/react-router";
+
+const FacilityMap = lazy(() => import("@/components/facility-map"));
 
 export const Route = createFileRoute("/clinics")({
   head: () => ({ meta: [{ title: "Find a Clinic · MediQueue" }] }),
@@ -77,29 +80,16 @@ export function FacilityListPage({ type, title, description }: { type: "clinic" 
           <div className="text-sm font-semibold mb-3 flex items-center gap-2">
             <MapPin className="h-4 w-4 text-primary" /> Map preview
           </div>
-          <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-[image:var(--gradient-hero)] text-primary-foreground">
-            <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(oklch(1_0_0/.15)_1px,transparent_1px),linear-gradient(90deg,oklch(1_0_0/.15)_1px,transparent_1px)] [background-size:20px_20px]" />
-            {list.slice(0, 5).map((f, i) => (
-              <motion.div
-                key={f.id}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.1 + i * 0.08, type: "spring" }}
-                className="absolute"
-                style={{ left: `${15 + (i * 17) % 70}%`, top: `${20 + (i * 23) % 60}%` }}
-              >
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-full bg-secondary animate-ping opacity-40" />
-                  <div className="relative grid h-7 w-7 place-items-center rounded-full bg-secondary text-secondary-foreground shadow-lg text-[10px] font-bold">
-                    {i + 1}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-            <div className="absolute bottom-3 left-3 right-3 rounded-xl bg-black/30 backdrop-blur p-3 text-xs">
-              <div className="font-semibold flex items-center gap-1"><Users className="h-3 w-3" /> Community wait times</div>
-              <div className="opacity-90 mt-1">Crowdsourced from users near you.</div>
-            </div>
+          <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border bg-muted">
+            <ClientOnly fallback={<div className="h-full w-full grid place-items-center text-xs text-muted-foreground">Loading map…</div>}>
+              <Suspense fallback={<div className="h-full w-full grid place-items-center text-xs text-muted-foreground">Loading map…</div>}>
+                <FacilityMap facilities={list} />
+              </Suspense>
+            </ClientOnly>
+          </div>
+          <div className="mt-3 rounded-xl bg-primary/5 p-3 text-xs text-muted-foreground">
+            <div className="font-semibold text-foreground flex items-center gap-1"><Users className="h-3 w-3" /> Community wait times</div>
+            <div className="mt-1">Crowdsourced from users near you across Ugu District.</div>
           </div>
         </Card>
       </div>
