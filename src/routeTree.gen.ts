@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SymptomsRouteImport } from './routes/symptoms'
+import { Route as PharmaciesRouteImport } from './routes/pharmacies'
 import { Route as MentalHealthRouteImport } from './routes/mental-health'
+import { Route as ClinicsRouteImport } from './routes/clinics'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -19,9 +21,19 @@ const SymptomsRoute = SymptomsRouteImport.update({
   path: '/symptoms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PharmaciesRoute = PharmaciesRouteImport.update({
+  id: '/pharmacies',
+  path: '/pharmacies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MentalHealthRoute = MentalHealthRouteImport.update({
   id: '/mental-health',
   path: '/mental-health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClinicsRoute = ClinicsRouteImport.update({
+  id: '/clinics',
+  path: '/clinics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AssistantRoute = AssistantRouteImport.update({
@@ -38,34 +50,61 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
+  '/clinics': typeof ClinicsRoute
   '/mental-health': typeof MentalHealthRoute
+  '/pharmacies': typeof PharmaciesRoute
   '/symptoms': typeof SymptomsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
+  '/clinics': typeof ClinicsRoute
   '/mental-health': typeof MentalHealthRoute
+  '/pharmacies': typeof PharmaciesRoute
   '/symptoms': typeof SymptomsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
+  '/clinics': typeof ClinicsRoute
   '/mental-health': typeof MentalHealthRoute
+  '/pharmacies': typeof PharmaciesRoute
   '/symptoms': typeof SymptomsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assistant' | '/mental-health' | '/symptoms'
+  fullPaths:
+    | '/'
+    | '/assistant'
+    | '/clinics'
+    | '/mental-health'
+    | '/pharmacies'
+    | '/symptoms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assistant' | '/mental-health' | '/symptoms'
-  id: '__root__' | '/' | '/assistant' | '/mental-health' | '/symptoms'
+  to:
+    | '/'
+    | '/assistant'
+    | '/clinics'
+    | '/mental-health'
+    | '/pharmacies'
+    | '/symptoms'
+  id:
+    | '__root__'
+    | '/'
+    | '/assistant'
+    | '/clinics'
+    | '/mental-health'
+    | '/pharmacies'
+    | '/symptoms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssistantRoute: typeof AssistantRoute
+  ClinicsRoute: typeof ClinicsRoute
   MentalHealthRoute: typeof MentalHealthRoute
+  PharmaciesRoute: typeof PharmaciesRoute
   SymptomsRoute: typeof SymptomsRoute
 }
 
@@ -78,11 +117,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SymptomsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pharmacies': {
+      id: '/pharmacies'
+      path: '/pharmacies'
+      fullPath: '/pharmacies'
+      preLoaderRoute: typeof PharmaciesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mental-health': {
       id: '/mental-health'
       path: '/mental-health'
       fullPath: '/mental-health'
       preLoaderRoute: typeof MentalHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/clinics': {
+      id: '/clinics'
+      path: '/clinics'
+      fullPath: '/clinics'
+      preLoaderRoute: typeof ClinicsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/assistant': {
@@ -105,7 +158,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssistantRoute: AssistantRoute,
+  ClinicsRoute: ClinicsRoute,
   MentalHealthRoute: MentalHealthRoute,
+  PharmaciesRoute: PharmaciesRoute,
   SymptomsRoute: SymptomsRoute,
 }
 export const routeTree = rootRouteImport
