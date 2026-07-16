@@ -4,7 +4,8 @@ import { Bot, Send, X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useServerFn } from "@tanstack/react-start";
 import { chatWithAi } from "@/lib/ai.functions";
-import logo from "@/assets/mediqueue-logo.png";
+import logoAsset from "@/assets/mediqueue-logo.png.asset.json";
+const logo = logoAsset.url;
 
 type Msg = { role: "user" | "assistant"; content: string };
 

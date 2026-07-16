@@ -21,7 +21,8 @@ import {
   HeartPulse,
   Bot,
 } from "lucide-react";
-import logo from "@/assets/mediqueue-logo.png";
+import logoAsset from "@/assets/mediqueue-logo.png.asset.json";
+const logo = logoAsset.url;
 
 const nav = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },

@@ -3,7 +3,8 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./app-sidebar";
 import { FloatingAssistant } from "./floating-assistant";
 import { Toaster } from "@/components/ui/sonner";
-import logo from "@/assets/mediqueue-logo.png";
+import logoAsset from "@/assets/mediqueue-logo.png.asset.json";
+const logo = logoAsset.url;
 
 export function AppShell() {
   return (
