@@ -30,8 +30,8 @@ export const facilities: Clinic[] = [
   { id: "c10", name: "Umzinto Clinic", type: "clinic", address: "Main Rd, Umzinto", distanceKm: 40.0, waitMinutes: 60, hours: "07:30 – 16:00", phone: "039 974 1010", services: ["General", "HIV", "Chronic Care"] },
   { id: "c11", name: "Harding Clinic", type: "clinic", address: "Main St, Harding", distanceKm: 60.5, waitMinutes: 45, hours: "07:30 – 16:00", phone: "039 433 1010", services: ["General", "TB", "HIV"] },
   { id: "c12", name: "Ramsgate Clinic", type: "clinic", address: "Marine Dr, Ramsgate", distanceKm: 11.0, waitMinutes: 20, hours: "07:30 – 16:00", phone: "039 314 4477", services: ["General", "Immunisation"] },
-  { id: "c13", name: "Mvutshini Clinic", type: "clinic", address: "Mvutshini, Mzumbe", distanceKm: 33.0, waitMinutes: 55, hours: "07:30 – 16:00", phone: "039 975 1010", services: ["General", "HIV", "TB", "Maternal"] },
-  { id: "c14", name: "Lidumala Clinic", type: "clinic", address: "Lidumala, Mzumbe", distanceKm: 35.5, waitMinutes: 50, hours: "07:30 – 16:00", phone: "039 975 2020", services: ["General", "Chronic Care", "Immunisation"] },
+  { id: "c13", name: "Mvutshini Clinic", type: "clinic", address: "Mvutshini Location", distanceKm: 33.0, waitMinutes: 55, hours: "07:30 – 16:00", phone: "039 975 1010", services: ["General", "HIV", "TB", "Maternal"] },
+  { id: "c14", name: "Lidumala Clinic", type: "clinic", address: "Lamonti", distanceKm: 35.5, waitMinutes: 50, hours: "07:30 – 16:00", phone: "039 975 2020", services: ["General", "Chronic Care", "Immunisation"] },
 
   // Pharmacies in Ugu
   { id: "p1", name: "Clicks Pharmacy — Shelly Centre", type: "pharmacy", address: "Shelly Centre, Shelly Beach", distanceKm: 5.2, waitMinutes: 10, hours: "08:30 – 18:00", phone: "039 315 7788", services: ["Prescriptions", "Wellness Clinic"] },
