@@ -14,16 +14,180 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      medical_records: {
+        Row: {
+          author_id: string | null
+          condition: string
+          created_at: string
+          diagnosis: string | null
+          facility: string | null
+          id: string
+          notes: string | null
+          patient_id: string
+          prescription: string | null
+          treatment: string | null
+          updated_at: string
+          visit_date: string
+        }
+        Insert: {
+          author_id?: string | null
+          condition?: string
+          created_at?: string
+          diagnosis?: string | null
+          facility?: string | null
+          id?: string
+          notes?: string | null
+          patient_id: string
+          prescription?: string | null
+          treatment?: string | null
+          updated_at?: string
+          visit_date?: string
+        }
+        Update: {
+          author_id?: string | null
+          condition?: string
+          created_at?: string
+          diagnosis?: string | null
+          facility?: string | null
+          id?: string
+          notes?: string | null
+          patient_id?: string
+          prescription?: string | null
+          treatment?: string | null
+          updated_at?: string
+          visit_date?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          address: string | null
+          created_at: string
+          date_of_birth: string | null
+          full_name: string
+          gender: string | null
+          id: string
+          id_number: string | null
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          date_of_birth?: string | null
+          full_name?: string
+          gender?: string | null
+          id: string
+          id_number?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          date_of_birth?: string | null
+          full_name?: string
+          gender?: string | null
+          id?: string
+          id_number?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      queue_entries: {
+        Row: {
+          attended_by: string | null
+          called_at: string | null
+          checked_in_at: string
+          completed_at: string | null
+          created_at: string
+          department: string
+          facility: string
+          id: string
+          patient_id: string
+          priority: Database["public"]["Enums"]["queue_priority"]
+          reason: string | null
+          status: Database["public"]["Enums"]["queue_status"]
+          ticket_number: string
+        }
+        Insert: {
+          attended_by?: string | null
+          called_at?: string | null
+          checked_in_at?: string
+          completed_at?: string | null
+          created_at?: string
+          department?: string
+          facility?: string
+          id?: string
+          patient_id: string
+          priority?: Database["public"]["Enums"]["queue_priority"]
+          reason?: string | null
+          status?: Database["public"]["Enums"]["queue_status"]
+          ticket_number: string
+        }
+        Update: {
+          attended_by?: string | null
+          called_at?: string | null
+          checked_in_at?: string
+          completed_at?: string | null
+          created_at?: string
+          department?: string
+          facility?: string
+          id?: string
+          patient_id?: string
+          priority?: Database["public"]["Enums"]["queue_priority"]
+          reason?: string | null
+          status?: Database["public"]["Enums"]["queue_status"]
+          ticket_number?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_clinical: { Args: { _user_id: string }; Returns: boolean }
+      is_staff: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "patient" | "doctor" | "nurse" | "receptionist" | "admin"
+      queue_priority: "emergency" | "urgent" | "routine"
+      queue_status:
+        | "waiting"
+        | "called"
+        | "in_progress"
+        | "completed"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +314,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["patient", "doctor", "nurse", "receptionist", "admin"],
+      queue_priority: ["emergency", "urgent", "routine"],
+      queue_status: [
+        "waiting",
+        "called",
+        "in_progress",
+        "completed",
+        "cancelled",
+      ],
+    },
   },
 } as const
