@@ -14,6 +14,7 @@ import { Route as PharmaciesRouteImport } from './routes/pharmacies'
 import { Route as MentalHealthRouteImport } from './routes/mental-health'
 import { Route as MedicinesRouteImport } from './routes/medicines'
 import { Route as ClinicsRouteImport } from './routes/clinics'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as AppointmentsRouteImport } from './routes/appointments'
 import { Route as IndexRouteImport } from './routes/index'
@@ -43,6 +44,11 @@ const ClinicsRoute = ClinicsRouteImport.update({
   path: '/clinics',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AssistantRoute = AssistantRouteImport.update({
   id: '/assistant',
   path: '/assistant',
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/appointments': typeof AppointmentsRoute
   '/assistant': typeof AssistantRoute
+  '/auth': typeof AuthRoute
   '/clinics': typeof ClinicsRoute
   '/medicines': typeof MedicinesRoute
   '/mental-health': typeof MentalHealthRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/appointments': typeof AppointmentsRoute
   '/assistant': typeof AssistantRoute
+  '/auth': typeof AuthRoute
   '/clinics': typeof ClinicsRoute
   '/medicines': typeof MedicinesRoute
   '/mental-health': typeof MentalHealthRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/appointments': typeof AppointmentsRoute
   '/assistant': typeof AssistantRoute
+  '/auth': typeof AuthRoute
   '/clinics': typeof ClinicsRoute
   '/medicines': typeof MedicinesRoute
   '/mental-health': typeof MentalHealthRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/appointments'
     | '/assistant'
+    | '/auth'
     | '/clinics'
     | '/medicines'
     | '/mental-health'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/appointments'
     | '/assistant'
+    | '/auth'
     | '/clinics'
     | '/medicines'
     | '/mental-health'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/appointments'
     | '/assistant'
+    | '/auth'
     | '/clinics'
     | '/medicines'
     | '/mental-health'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppointmentsRoute: typeof AppointmentsRoute
   AssistantRoute: typeof AssistantRoute
+  AuthRoute: typeof AuthRoute
   ClinicsRoute: typeof ClinicsRoute
   MedicinesRoute: typeof MedicinesRoute
   MentalHealthRoute: typeof MentalHealthRoute
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ClinicsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/assistant': {
       id: '/assistant'
       path: '/assistant'
@@ -199,6 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppointmentsRoute: AppointmentsRoute,
   AssistantRoute: AssistantRoute,
+  AuthRoute: AuthRoute,
   ClinicsRoute: ClinicsRoute,
   MedicinesRoute: MedicinesRoute,
   MentalHealthRoute: MentalHealthRoute,
