@@ -138,7 +138,12 @@ function QueuePage() {
 
   const updateStatus = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: QueueRow["status"] }) => {
-      const patch: Record<string, unknown> = { status };
+      const patch: {
+        status: QueueRow["status"];
+        called_at?: string;
+        completed_at?: string;
+        attended_by?: string;
+      } = { status };
       if (status === "called") patch.called_at = new Date().toISOString();
       if (status === "completed") {
         patch.completed_at = new Date().toISOString();
