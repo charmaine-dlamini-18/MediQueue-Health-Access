@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SymptomsRouteImport } from './routes/symptoms'
 import { Route as RecordsRouteImport } from './routes/records'
+import { Route as QueueRouteImport } from './routes/queue'
 import { Route as PharmaciesRouteImport } from './routes/pharmacies'
 import { Route as MentalHealthRouteImport } from './routes/mental-health'
 import { Route as MedicinesRouteImport } from './routes/medicines'
@@ -18,6 +19,7 @@ import { Route as ClinicsRouteImport } from './routes/clinics'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as AppointmentsRouteImport } from './routes/appointments'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SymptomsRoute = SymptomsRouteImport.update({
@@ -28,6 +30,11 @@ const SymptomsRoute = SymptomsRouteImport.update({
 const RecordsRoute = RecordsRouteImport.update({
   id: '/records',
   path: '/records',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QueueRoute = QueueRouteImport.update({
+  id: '/queue',
+  path: '/queue',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PharmaciesRoute = PharmaciesRouteImport.update({
@@ -65,6 +72,11 @@ const AppointmentsRoute = AppointmentsRouteImport.update({
   path: '/appointments',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -73,6 +85,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/appointments': typeof AppointmentsRoute
   '/assistant': typeof AssistantRoute
   '/auth': typeof AuthRoute
@@ -80,11 +93,13 @@ export interface FileRoutesByFullPath {
   '/medicines': typeof MedicinesRoute
   '/mental-health': typeof MentalHealthRoute
   '/pharmacies': typeof PharmaciesRoute
+  '/queue': typeof QueueRoute
   '/records': typeof RecordsRoute
   '/symptoms': typeof SymptomsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/appointments': typeof AppointmentsRoute
   '/assistant': typeof AssistantRoute
   '/auth': typeof AuthRoute
@@ -92,12 +107,14 @@ export interface FileRoutesByTo {
   '/medicines': typeof MedicinesRoute
   '/mental-health': typeof MentalHealthRoute
   '/pharmacies': typeof PharmaciesRoute
+  '/queue': typeof QueueRoute
   '/records': typeof RecordsRoute
   '/symptoms': typeof SymptomsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/appointments': typeof AppointmentsRoute
   '/assistant': typeof AssistantRoute
   '/auth': typeof AuthRoute
@@ -105,6 +122,7 @@ export interface FileRoutesById {
   '/medicines': typeof MedicinesRoute
   '/mental-health': typeof MentalHealthRoute
   '/pharmacies': typeof PharmaciesRoute
+  '/queue': typeof QueueRoute
   '/records': typeof RecordsRoute
   '/symptoms': typeof SymptomsRoute
 }
@@ -112,6 +130,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/appointments'
     | '/assistant'
     | '/auth'
@@ -119,11 +138,13 @@ export interface FileRouteTypes {
     | '/medicines'
     | '/mental-health'
     | '/pharmacies'
+    | '/queue'
     | '/records'
     | '/symptoms'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/appointments'
     | '/assistant'
     | '/auth'
@@ -131,11 +152,13 @@ export interface FileRouteTypes {
     | '/medicines'
     | '/mental-health'
     | '/pharmacies'
+    | '/queue'
     | '/records'
     | '/symptoms'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/appointments'
     | '/assistant'
     | '/auth'
@@ -143,12 +166,14 @@ export interface FileRouteTypes {
     | '/medicines'
     | '/mental-health'
     | '/pharmacies'
+    | '/queue'
     | '/records'
     | '/symptoms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   AppointmentsRoute: typeof AppointmentsRoute
   AssistantRoute: typeof AssistantRoute
   AuthRoute: typeof AuthRoute
@@ -156,6 +181,7 @@ export interface RootRouteChildren {
   MedicinesRoute: typeof MedicinesRoute
   MentalHealthRoute: typeof MentalHealthRoute
   PharmaciesRoute: typeof PharmaciesRoute
+  QueueRoute: typeof QueueRoute
   RecordsRoute: typeof RecordsRoute
   SymptomsRoute: typeof SymptomsRoute
 }
@@ -174,6 +200,13 @@ declare module '@tanstack/react-router' {
       path: '/records'
       fullPath: '/records'
       preLoaderRoute: typeof RecordsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/queue': {
+      id: '/queue'
+      path: '/queue'
+      fullPath: '/queue'
+      preLoaderRoute: typeof QueueRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pharmacies': {
@@ -225,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppointmentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -237,6 +277,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   AppointmentsRoute: AppointmentsRoute,
   AssistantRoute: AssistantRoute,
   AuthRoute: AuthRoute,
@@ -244,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   MedicinesRoute: MedicinesRoute,
   MentalHealthRoute: MentalHealthRoute,
   PharmaciesRoute: PharmaciesRoute,
+  QueueRoute: QueueRoute,
   RecordsRoute: RecordsRoute,
   SymptomsRoute: SymptomsRoute,
 }
