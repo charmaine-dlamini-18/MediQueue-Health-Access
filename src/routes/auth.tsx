@@ -100,7 +100,7 @@ function AuthPage() {
           email: parsed.data.email,
           password: parsed.data.password,
           options: {
-            emailRedirectTo: `${window.location.origin}/auth`,
+            emailRedirectTo: `${window.location.origin}/auth?next=${encodeURIComponent(nextPath)}`,
             data: {
               full_name: parsed.data.fullName,
               phone: parsed.data.phone ?? null,
@@ -124,7 +124,7 @@ function AuthPage() {
   async function handleGoogle() {
     setBusy(true);
     const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
+      redirect_uri: `${window.location.origin}/auth?next=${encodeURIComponent(nextPath)}`,
     });
     if (result.error) {
       toast.error("Google sign-in failed. Please try again.");
