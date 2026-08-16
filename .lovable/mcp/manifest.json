@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "sdk_version": "0.25.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://kfgmermzkpogtnjakzmw.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "mediqueue-health-access",
+      "version": "0.1.0",
+      "title": "MediQueue Health Access"
+    },
+    "tools": [
+      {
+        "name": "find_facilities",
+        "title": "Find clinics, hospitals and pharmacies",
+        "description": "Search MediQueue's Ugu District (KwaZulu-Natal) healthcare facilities by name, area or service. Returns address, opening hours, phone, services and the current crowdsourced waiting time.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "query": {
+              "description": "Name, town or service to match, e.g. 'Margate' or 'TB'.",
+              "type": "string"
+            },
+            "type": {
+              "description": "Restrict to one facility type.",
+              "type": "string",
+              "enum": [
+                "clinic",
+                "hospital",
+                "pharmacy"
+              ]
+            },
+            "limit": {
+              "default": 10,
+              "description": "Maximum results to return.",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "check_medicine_availability",
+        "title": "Check medicine stock",
+        "description": "Look up which MediQueue clinics, hospitals and pharmacies currently have a medicine in stock, so patients avoid unnecessary travel.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "medicine": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Medicine name or category, e.g. 'Metformin' or 'HIV'."
+            }
+          },
+          "required": [
+            "medicine"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "my_medical_records",
+        "title": "My medical records",
+        "description": "List the signed-in MediQueue patient's own medical records (visit date, condition, diagnosis, treatment, prescription and facility).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "limit": {
+              "default": 10,
+              "description": "Maximum records to return, newest first.",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "my_queue_status",
+        "title": "My clinic queue status",
+        "description": "Show the signed-in MediQueue patient's current and recent clinic queue tickets, including ticket number, facility, department, priority and status.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
