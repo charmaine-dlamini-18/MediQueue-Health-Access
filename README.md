@@ -217,7 +217,7 @@ https://github.com/charmaine-dlamini-18/MediQueue-Health-Access.git
 
 # Team Members
 
-- **Charmaine Dlamini** – Project Developer
+- **Charmaine Dlamini** – Project Developer and Owner
 
 ---
 
